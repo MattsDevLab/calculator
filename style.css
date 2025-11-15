@@ -36,5 +36,6 @@ button{
     flex: 1 0 calc(25% - 2rem);
     font-size: 2rem;
     color: #fff;
+    cursor: pointer;
     background-color: #2e302e;
 }
