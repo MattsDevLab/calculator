@@ -11,6 +11,23 @@ function updateDisplay(){
     calculatorDisplay.textContent = displayValue;
 }
 
+updateDisplay();
+
+function inputDigit(digit){
+    if (waitingForSecondNumber){
+        displayValue = digit;
+        waitingForSecondNumber = false;
+    } else {
+        displayValue = displayValue === "0" ? digit : displayValue + digit;
+    }
+}
+
+
+
+
+
+
+
 calculatorKeys.forEach((button)=>{
     button.addEventListener('click', event =>{
         let value = event.target.textContent.trim();
@@ -43,19 +60,6 @@ calculatorKeys.forEach((button)=>{
         }
     });
 });
-
-// function splitCalc(input){
-//     const calcArray = input.split(""); 
-//     const match = input.match(/[+\-x÷]/);
-
-//     if(!match){
-//         return;
-//     }
-
-//     firstNumber = Number(calcArray[0]);
-//     operator = calcArray[1];
-//     waitingForSecondNumber = Number(calcArray[2]);
-// }
 
 function add(a, b){
     return a + b;
