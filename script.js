@@ -46,7 +46,7 @@ function handleOperator(nextOperator){
     if(firstNumber === null){
         firstNumber = inputValue;
     } else if(operator){
-        const result = operate(firstNumber, operator, inputValue);
+        const result = compute(firstNumber, operator, inputValue);
         displayValue = String(result);
         firstNumber = result;
     }
@@ -62,7 +62,7 @@ function handleEquals(){
     }
 
     const secondNumber = Number(displayValue);
-    const result = operate(firstNumber, operator, secondNumber);
+    const result = compute(firstNumber, operator, secondNumber);
 
     displayValue = String(result);
 
