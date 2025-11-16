@@ -87,6 +87,7 @@ function clearAll(){
     firstNumber = null;
     operator = null;
     waitingForSecondNumber = false;
+    justEvaluated = false;
     updateDisplay();
 }
 
