@@ -16,6 +16,10 @@ function updateDisplay(){
 
 updateDisplay();
 
+function formatResult(num){
+    return Math.round(num * 1000) / 1000;
+}
+
 function inputDigit(digit){
     if(justEvaluated){
         displayValue = digit;
@@ -68,8 +72,18 @@ function handleEquals(){
     justEvaluated = true;
 }
 
+function compute(a, op, b){
+    const rawResult = operate(a, op, b);
+
+    if(typeof rawResult === "string"){
+        return rawResult;
+    }
+
+    return formatResult(rawResult);
+}
+
 function clearAll(){
-    displayValue = 0;
+    displayValue = "0";
     firstNumber = null;
     operator = null;
     waitingForSecondNumber = false;
@@ -125,6 +139,7 @@ function divide(a, b){
     if(b === 0){
         return "Nice try, you cant ÷ by 0!";
     }
+
     return a / b;
 }
 
