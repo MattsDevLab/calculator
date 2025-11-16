@@ -22,7 +22,20 @@ function inputDigit(digit){
     }
 }
 
+function handleOperator(nextOperator){
+    const inputValue = Number(displayValue);
 
+    if(firstNumber === null){
+        firstNumber = inputValue;
+    } else if(operator){
+        const result = operate(firstNumber, operator, inputValue);
+        displayValue = String(result);
+        firstNumber = result;
+    }
+
+    operator = nextOperator;
+    waitingForSecondNumber = true;
+}
 
 
 
