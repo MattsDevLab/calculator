@@ -18,7 +18,6 @@ calculatorKeys.forEach((button)=>{
         }
 
         calcInput += value;
-        console.log(calcInput);
 
         if(calculatorDisplay.textContent === "0"){
             calculatorDisplay.textContent = value;
@@ -27,6 +26,11 @@ calculatorKeys.forEach((button)=>{
         }
 
         calculation = splitCalc(calcInput);
+
+        if(value === "="){
+            console.log("equals was clicked");
+            calculatorDisplay.textContent = operate(calcInputFirstNum, calcInputOperator, calcInputSecondNum);
+        }
 
     });
 });
@@ -63,7 +67,3 @@ function operate(firstNumber, operator, secondNumber){
         default: return "Invalid operator";
     }
 }
-
-operate(calcInputFirstNum, calcInputOperator, calcInputSecondNum);
-
-console.log(calculatorKeys);
