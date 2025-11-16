@@ -3,12 +3,13 @@ const calculatorKeys = document.querySelectorAll(".key-pad__key");
 const calculatorClear = document.querySelector("#key-pad__key--clear");
 
 let displayValue = "0";
-let firstNumber;
-let operator;
-let waitingForSecondNumber;
+let firstNumber = null;
+let operator = null;
+let waitingForSecondNumber = false;
 
-
-let calculation;
+function updateDisplay(){
+    calculatorDisplay.textContent = displayValue;
+}
 
 calculatorKeys.forEach((button)=>{
     button.addEventListener('click', event =>{
