@@ -1,11 +1,11 @@
 const calculatorDisplay = document.querySelector("#calculator__display-digits");
 const calculatorKeys = document.querySelectorAll(".key-pad__key");
 const calculatorClear = document.querySelector("#key-pad__key--clear");
+let calcInput = "";
+let calculation;
 let firstNumber;
 let secondNumber;
 let firstOperator;
-let calcInput = "";
-let calculation = splitCalc(calcInput);
 
 calculatorKeys.forEach((button)=>{
     button.addEventListener('click',event =>{
@@ -25,16 +25,19 @@ calculatorKeys.forEach((button)=>{
         } else{
             calculatorDisplay.textContent += value; 
         }
+
+        calculation = splitCalc(calcInput);
+
     });
 });
 
 function splitCalc(input){
-    return input.split(""); 
+    let calcArray = input.split(""); 
+    firstNumber = calcArray[0];
+    firstOperator = calcArray[1];
+    secondNumber = calcArray[2];
 }
 
-
-
-console.log(splitCalc(calcInput));
 function operate(firstNum, firstOp, secondNum){
     return add(firstNum, secondNum);
 }
