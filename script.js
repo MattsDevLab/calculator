@@ -1,6 +1,5 @@
 const calculatorDisplay = document.querySelector("#calculator__display-digits");
 const calculatorKeys = document.querySelectorAll(".key-pad__key");
-const calculatorClear = document.querySelector("#key-pad__key--clear");
 
 let displayValue = "0";
 let firstNumber = null;
