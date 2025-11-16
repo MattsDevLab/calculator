@@ -17,6 +17,12 @@ function updateDisplay(){
 updateDisplay();
 
 function inputDigit(digit){
+    if(justEvaluated){
+        displayValue = digit;
+        justEvaluated = false;
+        return;
+    }
+
     if (waitingForSecondNumber){
         displayValue = digit;
         waitingForSecondNumber = false;
@@ -55,9 +61,11 @@ function handleEquals(){
     const result = operate(firstNumber, operator, secondNumber);
 
     displayValue = String(result);
-    firstNumber = result;
+
+    firstNumber = null;
     operator = null;
     waitingForSecondNumber = true;
+    justEvaluated = true;
 }
 
 function clearAll(){
