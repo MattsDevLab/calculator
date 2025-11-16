@@ -20,6 +20,10 @@ function formatResult(num){
 }
 
 function inputDigit(digit){
+    if(digit === "." && displayValue.includes(".")){
+        return;
+    }
+
     if(justEvaluated){
         displayValue = digit;
         justEvaluated = false;
@@ -32,6 +36,7 @@ function inputDigit(digit){
     } else {
         displayValue = displayValue === "0" ? digit : displayValue + digit;
     }
+ 
 }
 
 function handleOperator(nextOperator){
