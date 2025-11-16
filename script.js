@@ -95,6 +95,27 @@ function clearAll(){
     updateDisplay();
 }
 
+function backspace(){
+    if(justEvaluated){
+        displayValue = "0";
+        justEvaluated = false;
+        updateDisplay();
+        return;
+    }
+
+    if(waitingForSecondNumber){
+        return;
+    }
+
+    if(displayValue.length > 1) {
+        displayValue = displayValue.slice(0, -1);
+    } else {
+        displayValue = "0";
+    }
+
+    updateDisplay();
+}
+
 // Click event listener
 
 calculatorKeys.forEach((button)=>{
@@ -103,6 +124,11 @@ calculatorKeys.forEach((button)=>{
 
          if(value === "AC"){
             clearAll();
+            return;
+        }
+
+        if(value === "DEL"){
+            backspace();
             return;
         }
 
