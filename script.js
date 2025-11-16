@@ -1,19 +1,24 @@
 const calculatorDisplay = document.querySelector("#calculator__display-digits");
 const calculatorKeys = document.querySelectorAll(".key-pad__key");
 const calculatorClear = document.querySelector("#key-pad__key--clear");
+
 let calcInput = "";
-let calculation;
 let calcInputFirstNum;
 let calcInputSecondNum;
 let calcInputOperator;
 
+let calculation;
+
 calculatorKeys.forEach((button)=>{
-    button.addEventListener('click',event =>{
-        const value = event.target.textContent;
+    button.addEventListener('click', event =>{
+        let value = event.target.textContent.trim();
 
          if(value === "AC"){
             calcInput = "";
             calculatorDisplay.textContent = "0";
+            calcInputFirstNum = undefined;
+            calcInputSecondNum = undefined;
+            calcInputOperator = undefined;
             return;
         }
 
