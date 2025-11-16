@@ -2,10 +2,11 @@ const calculatorDisplay = document.querySelector("#calculator__display-digits");
 const calculatorKeys = document.querySelectorAll(".key-pad__key");
 const calculatorClear = document.querySelector("#key-pad__key--clear");
 
-let calcInput = "";
-let calcInputFirstNum;
-let calcInputSecondNum;
-let calcInputOperator;
+let displayValue = "0";
+let firstNumber;
+let operator;
+let waitingForSecondNumber;
+
 
 let calculation;
 
@@ -14,36 +15,46 @@ calculatorKeys.forEach((button)=>{
         let value = event.target.textContent.trim();
 
          if(value === "AC"){
-            calcInput = "";
+            displayValue = "";
             calculatorDisplay.textContent = "0";
-            calcInputFirstNum = undefined;
-            calcInputSecondNum = undefined;
-            calcInputOperator = undefined;
+            firstNumber = undefined;
+            waitingForSecondNumber = undefined;
+            operator = undefined;
             return;
         }
 
          if(value === "="){
             splitCalc(calcInput);
-            calculatorDisplay.textContent = operate(calcInputFirstNum, calcInputOperator, calcInputSecondNum);
+            const result = operate(firstNumber, operator, waitingForSecondNumber);
+            calculatorDisplay.textContent = result;
+            calcInput = String(result);
+            return;
         }
 
-        calcInput += value;
+        if(value === "X") value = "x";
+
+        displayValue += value;
 
         if(calculatorDisplay.textContent === "0"){
             calculatorDisplay.textContent = value;
         } else{
             calculatorDisplay.textContent += value; 
         }
-
     });
 });
 
-function splitCalc(input){
-    let calcArray = input.split(""); 
-    calcInputFirstNum = Number(calcArray[0]);
-    calcInputOperator = calcArray[1];
-    calcInputSecondNum = Number(calcArray[2]);
-}
+// function splitCalc(input){
+//     const calcArray = input.split(""); 
+//     const match = input.match(/[+\-x÷]/);
+
+//     if(!match){
+//         return;
+//     }
+
+//     firstNumber = Number(calcArray[0]);
+//     operator = calcArray[1];
+//     waitingForSecondNumber = Number(calcArray[2]);
+// }
 
 function add(a, b){
     return a + b;
