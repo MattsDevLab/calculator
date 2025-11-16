@@ -6,6 +6,7 @@ let displayValue = "0";
 let firstNumber = null;
 let operator = null;
 let waitingForSecondNumber = false;
+let justEvaluated = false;
 
 // Helper Functions
 
@@ -27,6 +28,11 @@ function inputDigit(digit){
 function handleOperator(nextOperator){
     const inputValue = Number(displayValue);
 
+    if(operator && waitingForSecondNumber){
+        operator = nextOperator;
+        return;
+    }
+
     if(firstNumber === null){
         firstNumber = inputValue;
     } else if(operator){
@@ -37,6 +43,7 @@ function handleOperator(nextOperator){
 
     operator = nextOperator;
     waitingForSecondNumber = true;
+    justEvaluated = false;
 }
 
 function handleEquals(){
