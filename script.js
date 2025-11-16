@@ -3,9 +3,9 @@ const calculatorKeys = document.querySelectorAll(".key-pad__key");
 const calculatorClear = document.querySelector("#key-pad__key--clear");
 let calcInput = "";
 let calculation;
-let firstNumber;
-let secondNumber;
-let firstOperator;
+let calcInputFirstNum;
+let calcInputSecondNum;
+let calcInputOperator;
 
 calculatorKeys.forEach((button)=>{
     button.addEventListener('click',event =>{
@@ -33,29 +33,37 @@ calculatorKeys.forEach((button)=>{
 
 function splitCalc(input){
     let calcArray = input.split(""); 
-    firstNumber = calcArray[0];
-    firstOperator = calcArray[1];
-    secondNumber = calcArray[2];
+    calcInputFirstNum = Number(calcArray[0]);
+    calcInputOperator = calcArray[1];
+    calcInputSecondNum = Number(calcArray[2]);
 }
 
-function operate(firstNum, firstOp, secondNum){
-    return add(firstNum, secondNum);
-}
-
-function add(a,b){
+function add(a, b){
     return a + b;
 }
 
-function subtract(a,b){
+function subtract(a, b){
     return a - b;
 }
 
-function multiply(a,b){
+function multiply(a, b){
     return a * b;
 }
 
-function divide(a,b){
+function divide(a, b){
     return a / b;
 }
+
+function operate(firstNumber, operator, secondNumber){
+    switch(operator){
+        case "+": return add(firstNumber, secondNumber);
+        case "-": return subtract(firstNumber, secondNumber);
+        case "x": return multiply(firstNumber, secondNumber);
+        case "÷": return divide(firstNumber, secondNumber);
+        default: return "Invalid operator";
+    }
+}
+
+operate(calcInputFirstNum, calcInputOperator, calcInputSecondNum);
 
 console.log(calculatorKeys);
