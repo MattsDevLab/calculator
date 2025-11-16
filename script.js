@@ -122,6 +122,9 @@ function multiply(a, b){
 }
 
 function divide(a, b){
+    if(b === 0){
+        return "Nice try, you cant ÷ by 0!";
+    }
     return a / b;
 }
 
