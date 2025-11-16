@@ -22,19 +22,17 @@ calculatorKeys.forEach((button)=>{
             return;
         }
 
+         if(value === "="){
+            splitCalc(calcInput);
+            calculatorDisplay.textContent = operate(calcInputFirstNum, calcInputOperator, calcInputSecondNum);
+        }
+
         calcInput += value;
 
         if(calculatorDisplay.textContent === "0"){
             calculatorDisplay.textContent = value;
         } else{
             calculatorDisplay.textContent += value; 
-        }
-
-        calculation = splitCalc(calcInput);
-
-        if(value === "="){
-            console.log("equals was clicked");
-            calculatorDisplay.textContent = operate(calcInputFirstNum, calcInputOperator, calcInputSecondNum);
         }
 
     });
