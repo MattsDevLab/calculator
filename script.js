@@ -7,6 +7,8 @@ let firstNumber = null;
 let operator = null;
 let waitingForSecondNumber = false;
 
+// Helper Functions
+
 function updateDisplay(){
     calculatorDisplay.textContent = displayValue;
 }
@@ -37,42 +39,60 @@ function handleOperator(nextOperator){
     waitingForSecondNumber = true;
 }
 
+function handleEquals(){
+    if(operator === null || firstNumber === null || waitingForSecondNumber){
+        return;
+    }
 
+    const secondNumber = Number(displayValue);
+    const result = operate(firstNumber, operator, secondNumber);
 
+    displayValue = String(result);
+    firstNumber = result;
+    operator = null;
+    waitingForSecondNumber = true;
+}
 
+function clearAll(){
+    displayValue = 0;
+    firstNumber = null;
+    operator = null;
+    waitingForSecondNumber = false;
+    updateDisplay();
+}
+
+// Click event listener
 
 calculatorKeys.forEach((button)=>{
     button.addEventListener('click', event =>{
         let value = event.target.textContent.trim();
 
          if(value === "AC"){
-            displayValue = "";
-            calculatorDisplay.textContent = "0";
-            firstNumber = undefined;
-            waitingForSecondNumber = undefined;
-            operator = undefined;
+            clearAll();
             return;
         }
 
          if(value === "="){
-            splitCalc(calcInput);
-            const result = operate(firstNumber, operator, waitingForSecondNumber);
-            calculatorDisplay.textContent = result;
-            calcInput = String(result);
+            handleEquals();
+            updateDisplay();
             return;
         }
 
         if(value === "X") value = "x";
 
-        displayValue += value;
-
-        if(calculatorDisplay.textContent === "0"){
-            calculatorDisplay.textContent = value;
-        } else{
-            calculatorDisplay.textContent += value; 
+        if(["+", "-", "x", "÷"].includes(value)) {
+            handleOperator(value);
+            updateDisplay();
+            return;
         }
+
+        inputDigit(value);
+        updateDisplay();
+
     });
 });
+
+// Calculation handler
 
 function add(a, b){
     return a + b;
