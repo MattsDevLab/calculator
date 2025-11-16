@@ -3,6 +3,7 @@ let secondNumber;
 let firstOperator;
 const calculatorDisplay = document.querySelector("#calculator__display-digits");
 const calculatorKeys = document.querySelectorAll(".key-pad__key");
+const calculatorClear = document.querySelector("#key-pad__key--clear");
 
 calculatorKeys.forEach((button)=>{
     button.addEventListener('click',event =>{
@@ -12,6 +13,10 @@ calculatorKeys.forEach((button)=>{
             calculatorDisplay.textContent = value;
        } else{
             calculatorDisplay.textContent += value; 
+       }
+
+       if(value === "AC"){
+        calculatorDisplay.textContent = "0";
        }
     });
 });
